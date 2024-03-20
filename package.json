@@ -1,0 +1,42 @@
+{
+  "name": "carhub",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.8",
+    "@clerk/nextjs": "^4.27.5",
+    "@headlessui/react": "^1.7.14",
+    "@types/react-dom": "18.2.4",
+    "@vercel/postgres": "^0.5.1",
+    "apollo-server": "^3.13.0",
+    "autoprefixer": "^10.4.14",
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.8.0",
+    "next": "13.4.3",
+    "node-fetch": "^3.3.2",
+    "pg": "^8.11.3",
+    "pg-promise": "^11.5.4",
+    "postcss": "^8.4.23",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icon": "^1.0.0",
+    "react-icons": "^4.12.0",
+    "react-router-dom": "^6.20.1",
+    "tailwindcss": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.30",
+    "@types/react": "18.2.67",
+    "daisyui": "^4.4.19",
+    "typescript": "5.4.2"
+  }
+}
