@@ -1,6 +1,8 @@
-import { BookingSentContext } from "@context/BookingSentContext";
+"use client";
+import React, { useEffect, useState } from "react";
 import { CarProps } from "@types";
-import React, { useContext, useEffect, useState } from "react";
+import MessageFailed from "@components/MessageFailed";
+import MessageSuccess from "@components/MessageSuccess";
 
 interface FormProps {
   onSubmit: () => void;
@@ -11,7 +13,8 @@ interface FormProps {
 
 const Form: React.FC<FormProps> = ({ car }) => {
   const [locations, setLocations] = useState<CarProps[]>([]);
-  const { showMesg, setShowMesg } = useContext(BookingSentContext);
+  const [bookingError, setBookingError] = useState(false);
+  const [bookingSuccess, setBookingSuccess] = useState(false);
 
   const [formValue, setFormValue] = useState({
     carId: car.car_id,
@@ -37,14 +40,6 @@ const Form: React.FC<FormProps> = ({ car }) => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (showMesg) {
-      const timeoutId = setTimeout(() => {
-        setShowMesg(false);
-      }, 5000);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [showMesg, setShowMesg]);
   useEffect(() => {
     if (car) {
       console.log("Setting form values");
@@ -88,23 +83,43 @@ const Form: React.FC<FormProps> = ({ car }) => {
       });
 
       if (response.ok) {
-        setShowMesg(true);
+        setBookingSuccess(true);
         const { rentalId } = await response.json();
         console.log("Rental created successfully. Rental ID:", rentalId);
+        setTimeout(() => {
+          setBookingSuccess(false);
+        }, 5000);
       } else {
         console.error(
           "Failed to create rental. Server returned:",
           response.status,
           response.statusText
         );
+        setBookingError(true);
+        setTimeout(() => {
+          setBookingError(false);
+        }, 5000);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
+      setBookingError(true);
+      setTimeout(() => {
+        setBookingError(false);
+      }, 5000);
     }
   };
 
   return (
     <div>
+      {bookingError && (
+        <MessageFailed
+          msg={"Booking failed. Please select another time slot."}
+        />
+      )}
+
+      {bookingSuccess && (
+        <MessageSuccess msg={"Booking created successfully!"} />
+      )}
       <div className="flex flex-col w-full mb-5">
         <label className="text-white font-bold">Pick Up Location</label>
         <select
@@ -115,7 +130,7 @@ const Form: React.FC<FormProps> = ({ car }) => {
         >
           <option>Choose Location?</option>
           {locations &&
-            locations.map((loc: any, index:number) => (
+            locations.map((loc: any, index: number) => (
               <option key={index}>{loc.address}</option>
             ))}
         </select>
