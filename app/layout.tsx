@@ -1,4 +1,5 @@
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
 import { Footer, NavBar } from "@components";
 
@@ -17,6 +18,7 @@ export default function RootLayout({
       <html lang="en">
         <body className="relative">
           <NavBar />
+          <SpeedInsights />
           <SignedIn>{children}</SignedIn>
           <SignedOut>
             <SignedIn />
