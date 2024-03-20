@@ -11,7 +11,7 @@ interface CarCardProps {
 
 const CarCard: React.FC<CarCardProps> = ({ car }) => {
   return (
-    <div className="group p-2 sm:p-5 rounded-3xl border m-1 sm:m-5 cursor-pointer duration-50 hover:shadow-md transition-transform duration-300 hover:scale-105">
+    <div className="group p-2 sm:p-5 rounded-3xl border m-1 sm:m-5 cursor-pointer duration-50 hover:shadow-md transition-transform duration-300 hover:scale-90">
       <h2 className="text-xl font-medium mb-2">{car.model}</h2>
       <h2 className="text-xl font-bold mb-2">
         <span className="text-[12px] font-light">MAD</span>
@@ -27,7 +27,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
           className="w-[250px] h-[150px] mb-3 object-contain"
         />
       </div>
-      <div className="flex justify-around group-hover:hidden">
+      <div className="flex justify-around">
         <div className="text-center">
           <PiSteeringWheelFill className="w-full text-[22px] mb-2" />
           <h2 className="line-clamp-5 text-[14px] font-light">
@@ -45,7 +45,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
           </h2>
         </div>
       </div>
-      <button className="flex bg-blue-500 text-white px-4 py-2 rounded-full mt-4 mx-auto items-center transition-transform transform">
+      <button className="flex bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-full mt-4 mx-auto items-center transition-transform transform">
         Rent Now <IoIosArrowDropright className="ml-2" />
       </button>
     </div>
