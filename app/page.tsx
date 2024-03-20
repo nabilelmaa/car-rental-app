@@ -4,6 +4,8 @@ import { Hero } from "@components";
 import { CarProps } from "@types";
 import CarsList from "@components/CarsList";
 import CarsFiltersOption from "@components/CarsFiltersOption";
+import CarCardSkeleton from "@components/CarCardSkeleton";
+import Skeleton from "@components/Skeleton";
 
 export default function Home() {
   const [cars, setCars] = useState<CarProps[]>([]);
@@ -40,16 +42,18 @@ export default function Home() {
       const bookedCarIds = await bookedCarsResponse.json();
 
       // Filter out booked cars from the list of all cars
-      const availableCars = carsOrg.filter(
+      let availableCars = carsOrg.filter(
         (car) => !bookedCarIds.includes(car.id)
       );
 
-      // Filter the available cars by brand
-      const filterList = availableCars.filter(
-        (item: any) => item.manufacturer_name === brand
-      );
+      // Filter the available cars by brand if a specific brand is selected
+      if (brand !== "") {
+        availableCars = availableCars.filter(
+          (item: any) => item.manufacturer_name === brand
+        );
+      }
 
-      setCars(filterList);
+      setCars(availableCars);
     } catch (error) {
       console.error("Error fetching booked car IDs from API", error);
     } finally {
@@ -68,15 +72,20 @@ export default function Home() {
 
   return (
     <main>
-      <div className="">
+      <div>
         <Hero />
         {loading ? (
-          <div className="flex justify-center items-center h-screen">
-            <span className="loading loading-ball loading-xs"></span>
-            <span className="loading loading-ball loading-sm"></span>
-            <span className="loading loading-ball loading-md"></span>
-            <span className="loading loading-ball loading-lg"></span>
-          </div>
+          <>
+            <div className="p-6 sm:px-10 md:px-20">
+              <Skeleton />
+            </div>
+            <div className="flex flex-wrap justify-center">
+              <CarCardSkeleton />
+              <CarCardSkeleton />
+              <CarCardSkeleton />
+              <CarCardSkeleton />
+            </div>
+          </>
         ) : (
           <>
             <div className="p-6 sm:px-10 md:px-20">

@@ -1,4 +1,3 @@
-//Modal.tsx
 import { CarProps } from "@types";
 import React from "react";
 import CarCard_ from "./CarCard_";

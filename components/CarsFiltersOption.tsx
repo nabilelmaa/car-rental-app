@@ -24,25 +24,23 @@ function CarsFiltersOption({ cars, setBrand, setSortOrder }: any) {
         <p>Explore our cars you might like</p>
       </div>
 
-      <div className="flex item-center justify-center gap-5">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-5">
         <select
-          className="select select-primary w-[80%] max-w-xs font-bold"
+          className="select select-primary w-full md:w-[45%] max-w-xs font-bold sm:text-sm"
+          defaultValue=""
           onChange={(e) => setSortOrder(e.target.value)}
         >
-          <option disabled selected>
-            Price
-          </option>
+          <option value="">Price</option>
           <option value="asc">Min to Max</option>
           <option value="desc">Max to Min</option>
         </select>
         <select
-          className="select select-primary w-full max-w-xs font-bold"
+          className="select select-primary w-full md:w-[45%] max-w-xs font-bold sm:text-sm"
           defaultValue=""
           onChange={(e) => setBrand(e.target.value)}
         >
-          <option disabled value="">
-            Manufacturer
-          </option>
+          <option value="">Manufacturer</option>
+          <option value="">All</option> {/* New option for All */}
           {brandList &&
             brandList.map((brand: string, index: number) => (
               <option key={index} value={brand}>
