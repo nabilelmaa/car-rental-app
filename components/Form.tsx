@@ -181,7 +181,7 @@ const Form: React.FC<FormProps> = ({ car }) => {
         <label className="text-gray-400 font-bold">Phone</label>
         <input
           type="tel"
-          placeholder="e.g: 06-00-00-00-00"
+          placeholder="e.g: 0611223344"
           name="phone"
           onChange={handleChange}
           className="input input-bordered w-full max-w-lg font-bold"

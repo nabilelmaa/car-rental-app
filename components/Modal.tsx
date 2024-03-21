@@ -22,16 +22,24 @@ const Modal: React.FC<ModalProps> = ({ car, closeModal }) => (
         </div>
         <></>
         <div>
-          <Form car={car} onSubmit={function (): void {
-            throw new Error("Function not implemented.");
-          } } onClose={function (): void {
-            throw new Error("Function not implemented.");
-          } } address={""}/>
+          <Form
+            car={car}
+            onSubmit={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+            onClose={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+            address={""}
+          />
         </div>
       </div>
       <div className="modal-action">
-        <button className="btn" onClick={closeModal}>
-          Close
+        <button
+          className="btn btn-sm btn-ghost absolute right-4 top-2 bg-gray-300"
+          onClick={closeModal}
+        >
+          ✕
         </button>
       </div>
     </div>
