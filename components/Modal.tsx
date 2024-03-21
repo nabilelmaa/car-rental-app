@@ -36,7 +36,7 @@ const Modal: React.FC<ModalProps> = ({ car, closeModal }) => (
       </div>
       <div className="modal-action">
         <button
-          className="btn btn-sm btn-ghost absolute right-4 top-2 bg-gray-300"
+          className="btn btn-sm btn-ghost absolute right-4 top-2 bg-gray-300 hover:border-blue-500"
           onClick={closeModal}
         >
           ✕

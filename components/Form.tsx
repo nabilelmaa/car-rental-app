@@ -15,6 +15,7 @@ const Form: React.FC<FormProps> = ({ car }) => {
   const [locations, setLocations] = useState<CarProps[]>([]);
   const [bookingError, setBookingError] = useState(false);
   const [bookingSuccess, setBookingSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [formValue, setFormValue] = useState({
     carId: car.car_id,
@@ -73,7 +74,7 @@ const Form: React.FC<FormProps> = ({ car }) => {
   const handleSubmit = async () => {
     try {
       console.log("Submitting form with data:", formValue);
-
+      setLoading(true);
       const response = await fetch("/api/rentals", {
         method: "POST",
         headers: {
@@ -100,20 +101,23 @@ const Form: React.FC<FormProps> = ({ car }) => {
           setBookingError(false);
         }, 5000);
       }
+      setLoading(false);
     } catch (error) {
       console.error("Error submitting form:", error);
       setBookingError(true);
+      setLoading(false);
       setTimeout(() => {
         setBookingError(false);
       }, 5000);
     }
   };
-
   return (
     <div>
       {bookingError && (
         <MessageFailed
-          msg={"Booking failed. Please select another time slot."}
+          msg={
+            "Booking failed! This car is already booked during this period. Please select another time slot. Thank you!🙂"
+          }
         />
       )}
 
@@ -190,10 +194,14 @@ const Form: React.FC<FormProps> = ({ car }) => {
       </div>
       <div className="modal-action">
         <button
-          className="btn bg-blue-500 text-white hover:bg-blue-900"
+          className="btn bg-blue-500 text-white hover:bg-blue-600 relative min-w-[80px]"
           onClick={handleSubmit}
         >
-          Save
+          {loading ? (
+            <span className="loading loading-spinner loading-sm absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
+          ) : (
+            "Save"
+          )}
         </button>
       </div>
     </div>

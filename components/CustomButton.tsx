@@ -22,8 +22,8 @@ const CustomButton = ({
       type={btnType || "button"}
       className={`${buttonClasses} ${
         darkMode
-          ? "dark:bg-white dark:text-[#312e81]"
-          : "bg-[#312e81] text-white"
+          ? "dark:bg-white dark:text-blue-600"
+          : "bg-blue-600 text-white"
       }`}
       onClick={handleClick}
     >

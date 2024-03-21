@@ -11,7 +11,7 @@ interface CarCardProps {
 
 const CarCard: React.FC<CarCardProps> = ({ car }) => {
   return (
-    <div className="group p-2 sm:p-5 rounded-3xl border m-1 sm:m-5 cursor-pointer duration-50 hover:shadow-md transition-transform duration-300 hover:scale-90">
+    <div className="group p-2 sm:p-5 rounded-2xl border m-1 sm:m-5 cursor-pointer duration-50 hover:shadow-sm hover:shadow-blue-500 transition-transform duration-300 hover:scale-90">
       <h2 className="text-xl font-medium mb-2">{car.model}</h2>
       <h2 className="text-xl font-bold mb-2">
         <span className="text-[12px] font-light">MAD</span>
