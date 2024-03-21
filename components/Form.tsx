@@ -114,11 +114,7 @@ const Form: React.FC<FormProps> = ({ car }) => {
   return (
     <div>
       {bookingError && (
-        <MessageFailed
-          msg={
-            "Booking failed! This car is already booked during this period. Please select another time slot. Thank you!🙂"
-          }
-        />
+        <MessageFailed msg={"Booking failed! This car is already booked🙂."} />
       )}
 
       {bookingSuccess && (
