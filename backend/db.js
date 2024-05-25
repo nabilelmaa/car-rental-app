@@ -8,11 +8,10 @@ const pool = new Pool({
   password: process.env.PGPASSWORD,
   port: process.env.PGPORT,
   ssl: {
-    rejectUnauthorized: true // Ensure SSL certificate verification
+    rejectUnauthorized: true
   }
 });
 
-// Handle pool connection errors
 pool.on('error', (err) => {
   console.error('Unexpected error on idle client', err);
   process.exit(-1);
