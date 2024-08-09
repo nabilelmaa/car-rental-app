@@ -33,20 +33,20 @@ export default function Home() {
   const filterCarList = async (brand: string) => {
     setSearchLoading(true);
 
-    // Simulate a delay (1 second) to show loading
+
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     try {
-      // Fetch booked car IDs from the API
+      
       const bookedCarsResponse = await fetch("/api/bookings");
       const bookedCarIds = await bookedCarsResponse.json();
 
-      // Filter out booked cars from the list of all cars
+
       let availableCars = carsOrg.filter(
         (car) => !bookedCarIds.includes(car.id)
       );
 
-      // Filter the available cars by brand if a specific brand is selected
+
       if (brand !== "") {
         availableCars = availableCars.filter(
           (item: any) => item.manufacturer_name === brand
